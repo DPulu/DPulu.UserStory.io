@@ -1,0 +1,87 @@
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page layout */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  background: #f5f5fa;
+  color: #222222;
+}
+
+.page {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 24px 28px 40px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.page-header h1 {
+  font-size: 1.9rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #555555;
+  margin-bottom: 20px;
+}
+
+/* Story list */
+.story-list {
+  list-style: decimal;
+  padding-left: 20px;
+}
+
+.story {
+  margin-bottom: 24px;
+}
+
+.story h2 {
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+.story p {
+  margin: 6px 0 8px;
+}
+
+.story h3 {
+  font-size: 1rem;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.story ul {
+  list-style: disc;
+  padding-left: 22px;
+}
+
+.story ul li {
+  margin-bottom: 4px;
+}
+
+/* Code-style text for function names */
+code {
+  font-family: "Consolas", "Courier New", monospace;
+  background: #f0f2ff;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* Footer */
+.page-footer {
+  border-top: 1px solid #e2e2f0;
+  margin-top: 20px;
+  padding-top: 10px;
+  font-size: 0.9rem;
+  color: #666666;
+}
