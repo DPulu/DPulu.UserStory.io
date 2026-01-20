@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agile Development – Final Project User Stories</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>Agile Development, Final Project User Stories</h1>
+      <p class="subtitle">
+        This page documents the user stories and acceptance criteria for the final C program,
+        including the menu, option selector, file I/O, calculations, and main integration function.
+      </p>
+    </header>
+
+    <ol class="story-list">
+      <!-- 1. Menu -->
+      <li class="story">
+        <h2>Title: Menu</h2>
+        <p>
+          As a developer, I want to code a menu, so that end users can select an option.
+        </p>
+        <h3>Acceptance Criteria</h3>
+        <ul>
+          <li>The menu must accommodate five options (exact text to be determined upon integration with the application).</li>
+          <li>The screen should be cleared before displaying the five options.</li>
+          <li>The selected option must be returned as an integer.</li>
+          <li>The integer function should be named <code>menu</code>.</li>
+        </ul>
+      </li>
+
+      <!-- 2. Option Selector -->
+      <li class="story">
+        <h2>Title: Option Selector</h2>
+        <p>
+          As a developer, I want to code an option selector that integrates with the menu, so that functions in separate files can be called.
+        </p>
+        <h3>Acceptance Criteria</h3>
+        <ul>
+          <li>The option selector must accommodate four options.</li>
+          <li>The file must include the four pertinent header files.</li>
+          <li>
+            The void function must be named <code>mainLoop</code> and have an integer
+            <code>option</code> as an input.
+          </li>
+        </ul>
+      </li>
+
+      <!-- 3. Write to File Function -->
+      <li class="story">
+        <h2>Title: Write to File Function</h2>
+        <p>
+          As a developer, I want to code a function that writes to a file, so that information can be outputted.
+        </p>
+        <h3>Acceptance Criteria</h3>
+        <ul>
+          <li>The void function must be named <code>writeFile</code> with no inputs.</li>
+          <li>Attempt to open the file and display an error message if not successful.</li>
+          <li>Successfully output data into the file.</li>
+          <li>Close the file once the information has been written.</li>
+        </ul>
+      </li>
+
+      <!-- 4. Read File Function -->
+      <li class="story">
+        <h2>Title: Read File Function</h2>
+        <p>
+          As a developer, I want to write a function that reads a file, so that information can be retrieved.
+        </p>
+        <h3>Acceptance Criteria</h3>
+        <ul>
+          <li>The void function must be named <code>readFile</code> and may not have any inputs.</li>
+          <li>
+            The file must be opened with the <code>fopen</code> function that accepts
+            two inputs.
+          </li>
+          <li>
+            The file must be closed with the <code>fclose</code> function that accepts
+            one input.
+          </li>
+          <li>
+            The void function must utilize the <code>fgetc</code> function that accepts
+            one input.
+          </li>
+          <li>The void function must utilize a loop until the End of File (EOF) has been detected.</li>
+          <li>The contents of the file should be printed to the console.</li>
+        </ul>
+      </li>
+
+      <!-- 5. Calculation 1 Function -->
+      <li class="story">
+        <h2>Title: Calculation 1 Function</h2>
+        <p>
+          As a developer, I want to code a function that performs a calculation, so that the result can be rendered to the console.
+        </p>
+        <h3>Acceptance Criteria</h3>
+        <ul>
+          <li>The void function must be named <code>firstCalculation</code> and must have two integer inputs.</li>
+          <li>The void function must perform a mathematical computation.</li>
+          <li>The resulting calculation must be displayed to the console.</li>
+        </ul>
+      </li>
+
+      <!-- 6. Calculation 2 Function -->
+      <li class="story">
+        <h2>Title: Calculation 2 Function</h2>
+        <p>
+          As a developer, I want to code another function that performs a calculation, so that the result can be rendered to the console.
+        </p>
+        <h3>Acceptance Criteria</h3>
+        <ul>
+          <li>The void function must be named <code>secondCalculation</code> and must have two integer inputs.</li>
+          <li>
+            The void function must perform a mathematical computation that differs from
+            <code>firstCalculation</code>.
+          </li>
+          <li>The resulting calculation must be displayed to the console.</li>
+        </ul>
+      </li>
+
+      <!-- 7. Main Integration Function -->
+      <li class="story">
+        <h2>Title: Main Integration Function</h2>
+        <p>
+          As a developer, I want to code a main function, so that all functions can be integrated and possibly called.
+        </p>
+        <h3>Acceptance Criteria</h3>
+        <ul>
+          <li>The integer function must be named <code>main</code> and have no inputs.</li>
+          <li>The integer function must return zero upon normal and complete execution.</li>
+          <li>The integer function must receive an option from the <code>menu</code> function.</li>
+          <li>
+            The integer function must continuously loop the <code>mainLoop</code> function
+            until an exit condition has been selected.
+          </li>
+          <li>
+            The integer function must utilize the two pertinent header files in addition to the standard headers.
+          </li>
+        </ul>
+      </li>
+    </ol>
+
+    <footer class="page-footer">
+      <p>
+        This document is maintained in GitHub as part of the Agile Development final project.
+      </p>
+    </footer>
+  </main>
+</body>
+</html>
