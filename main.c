@@ -17,6 +17,9 @@ int main(void)
 
     do {
         option = menu();
+
+        printf("\n");
+        
         mainLoop(option);
     } while (option != 5);  /* 5 = Exit option */
 

@@ -11,7 +11,7 @@ int menu(void)
     int option = 0;
 
     /* Clear screen in a simple, portable way */
-    for (int i = 0; i < 40; ++i) {
+    for (int i = 0; i < 8; ++i) {
         printf("\n");
     }
 

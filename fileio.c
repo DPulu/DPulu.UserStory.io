@@ -14,8 +14,8 @@ void writeFile(void)
         return;
     }
 
-    fprintf(fp, "This is example data written to the file.\n");
-    fprintf(fp, "You can change this to whatever your project requires.\n");
+    fprintf(fp, "This is the SDC255 Final Project.\n");
+    fprintf(fp, "By Dustin Pulu.\n");
 
     if (fclose(fp) != 0) {
         printf("Warning: error closing the file after writing.\n");
