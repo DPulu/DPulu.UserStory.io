@@ -1,32 +1,47 @@
-import { useState } from 'react';
-import './App.css';
+const express = require('express');
+const bookRoute = express.Router();
+let Book = require('../model/Book');
 
-function App() {
-  const [messageInput, setMessageInput] = useState('');
-  const [displayedMessage, setDisplayedMessage] = useState('Hello World');
+// Get all Books
+bookRoute.route('/').get((req, res) => {
+  Book.find().then((response) => {
+    res.status(200).json(response);
+  }).catch((error) => {
+    console.error(`Could not get books: ${error}`);
+  });
+});
 
-  function displayMessage() {
-    setDisplayedMessage(messageInput);
-  }
+// Add a book
+bookRoute.route('/add-book').post((req, res) => {
+  Book.create(req.body).then(() => {
+    console.log('Book added successfully.');
+    res.status(200).json({ message: 'Book added successfully' });
+  }).catch((error) => {
+    console.error(`Could not save book: ${error}`);
+  });
+});
 
-  return (
-    <div className="container">
-      <h1>React Message App</h1>
+// Update a book
+bookRoute.route('/update-book/:id').put((req, res) => {
+  Book.findByIdAndUpdate(req.params.id, {
+    $set: req.body
+  }).then(() => {
+    console.log('Book updated successfully.');
+    res.status(200).json({ message: 'Book updated successfully' });
+  }).catch((error) => {
+    console.error(`Could not update book: ${error}`);
+  });
+});
 
-      <label htmlFor="messageInput">Message to Display</label>
-      <input
-        id="messageInput"
-        type="text"
-        value={messageInput}
-        onChange={(e) => setMessageInput(e.target.value)}
-        placeholder="Enter your message"
-      />
+// Delete a Book
+bookRoute.route('/delete-book/:id').delete((req, res) => {
+  console.log(`Preparing to delete: ${req.params.id}`);
+  Book.findByIdAndDelete(req.params.id).then(() => {
+    console.log('Book deleted successfully.');
+    res.status(200).json({ message: 'Book deleted successfully' });
+  }).catch((error) => {
+    console.error(`Could not delete book: ${error}`);
+  });
+});
 
-      <button onClick={displayMessage}>Display Message</button>
-
-      <h2>{displayedMessage}</h2>
-    </div>
-  );
-}
-
-export default App;
+module.exports = bookRoute;
