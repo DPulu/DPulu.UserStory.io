@@ -1,51 +1,77 @@
-import { Component, OnInit } from '@angular/core';
-import { CrudService } from './../../service/crud.service';
+<div class="container">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">Books List</h2>
+  </div>
 
-@Component({
-  selector: 'app-books-list',
-  templateUrl: './books-list.component.html',
-  styleUrls: ['./books-list.component.css']
-})
-export class BooksListComponent implements OnInit {
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">ISBN</th>
+          <th scope="col">Title</th>
+          <th scope="col">Author</th>
+          <th scope="col">Description</th>
+          <th scope="col">Published Year</th>
+          <th scope="col">Publisher</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
 
-  Books: any = [];
-  editingBook: any = null;
+      <tbody>
+        <tr *ngFor="let book of Books; let i = index">
+          <th scope="row">{{book._id}}</th>
+          <td>{{book.isbn}}</td>
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.description}}</td>
+          <td>{{book.published_year}}</td>
+          <td>{{book.publisher}}</td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-warning me-2" (click)="onEdit(book)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="onDelete(book._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  constructor(private crudService: CrudService) { }
+  <div *ngIf="editingBook" class="card mt-4">
+    <div class="card-body">
+      <h3>Edit Book</h3>
 
-  ngOnInit(): void {
-    this.loadBooks();
-  }
+      <div class="mb-2">
+        <label>ISBN</label>
+        <input class="form-control" [(ngModel)]="editingBook.isbn">
+      </div>
 
-  loadBooks() {
-    this.crudService.GetBooks().subscribe(res => {
-      console.log(res);
-      this.Books = res;
-    });
-  }
+      <div class="mb-2">
+        <label>Title</label>
+        <input class="form-control" [(ngModel)]="editingBook.title">
+      </div>
 
-  onEdit(book: any) {
-    this.editingBook = { ...book };
-  }
+      <div class="mb-2">
+        <label>Author</label>
+        <input class="form-control" [(ngModel)]="editingBook.author">
+      </div>
 
-  onUpdate() {
-    this.crudService.UpdateBook(this.editingBook._id, this.editingBook)
-      .subscribe(res => {
-        console.log(res);
-        this.editingBook = null;
-        this.loadBooks();
-      });
-  }
+      <div class="mb-2">
+        <label>Description</label>
+        <input class="form-control" [(ngModel)]="editingBook.description">
+      </div>
 
-  onCancel() {
-    this.editingBook = null;
-  }
+      <div class="mb-2">
+        <label>Published Year</label>
+        <input class="form-control" [(ngModel)]="editingBook.published_year">
+      </div>
 
-  onDelete(id: any): any {
-    this.crudService.DeleteBook(id)
-      .subscribe(res => {
-        console.log(res);
-        this.loadBooks();
-      });
-  }
-}
+      <div class="mb-2">
+        <label>Publisher</label>
+        <input class="form-control" [(ngModel)]="editingBook.publisher">
+      </div>
+
+      <button class="btn btn-success me-2" (click)="onUpdate()">Update Book</button>
+      <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>
