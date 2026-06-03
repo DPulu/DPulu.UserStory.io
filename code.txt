@@ -1,45 +1,32 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { useState } from 'react';
+import './App.css';
 
-const UserSchema = new Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
+function App() {
+  const [messageInput, setMessageInput] = useState('');
+  const [displayedMessage, setDisplayedMessage] = useState('Hello World');
 
-    username: {
-        type: String,
-        trim: true
-    },
+  function displayMessage() {
+    setDisplayedMessage(messageInput);
+  }
 
-    password: String,
+  return (
+    <div className="container">
+      <h1>React Message App</h1>
 
-    website: {
-        type: String,
-        get: function(url) {
-            if (!url) {
-                return url;
-            } else {
-                if (
-                    url.indexOf('http://') !== 0 &&
-                    url.indexOf('https://') !== 0
-                ) {
-                    url = 'http://' + url;
-                }
+      <label htmlFor="messageInput">Message to Display</label>
+      <input
+        id="messageInput"
+        type="text"
+        value={messageInput}
+        onChange={(e) => setMessageInput(e.target.value)}
+        placeholder="Enter your message"
+      />
 
-                return url;
-            }
-        }
-    },
+      <button onClick={displayMessage}>Display Message</button>
 
-    created: {
-        type: Date,
-        default: Date.now
-    }
-});
+      <h2>{displayedMessage}</h2>
+    </div>
+  );
+}
 
-UserSchema.set('toJSON', { getters: true });
-
-mongoose.model('User', UserSchema);
-
-
-curl -X POST -H "Content-Type: application/json" -d "{\"firstName\":\"First\",\"lastName\":\"Last\",\"email\":\"user@example.com\",\"username\":\"username\",\"password\":\"password\",\"website\":\"google.com\"}" http://localhost:3000/users
+export default App;
