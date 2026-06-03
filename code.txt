@@ -1,47 +1,51 @@
-const express = require('express');
-const bookRoute = express.Router();
-let Book = require('../model/Book');
+import { Component, OnInit } from '@angular/core';
+import { CrudService } from './../../service/crud.service';
 
-// Get all Books
-bookRoute.route('/').get((req, res) => {
-  Book.find().then((response) => {
-    res.status(200).json(response);
-  }).catch((error) => {
-    console.error(`Could not get books: ${error}`);
-  });
-});
+@Component({
+  selector: 'app-books-list',
+  templateUrl: './books-list.component.html',
+  styleUrls: ['./books-list.component.css']
+})
+export class BooksListComponent implements OnInit {
 
-// Add a book
-bookRoute.route('/add-book').post((req, res) => {
-  Book.create(req.body).then(() => {
-    console.log('Book added successfully.');
-    res.status(200).json({ message: 'Book added successfully' });
-  }).catch((error) => {
-    console.error(`Could not save book: ${error}`);
-  });
-});
+  Books: any = [];
+  editingBook: any = null;
 
-// Update a book
-bookRoute.route('/update-book/:id').put((req, res) => {
-  Book.findByIdAndUpdate(req.params.id, {
-    $set: req.body
-  }).then(() => {
-    console.log('Book updated successfully.');
-    res.status(200).json({ message: 'Book updated successfully' });
-  }).catch((error) => {
-    console.error(`Could not update book: ${error}`);
-  });
-});
+  constructor(private crudService: CrudService) { }
 
-// Delete a Book
-bookRoute.route('/delete-book/:id').delete((req, res) => {
-  console.log(`Preparing to delete: ${req.params.id}`);
-  Book.findByIdAndDelete(req.params.id).then(() => {
-    console.log('Book deleted successfully.');
-    res.status(200).json({ message: 'Book deleted successfully' });
-  }).catch((error) => {
-    console.error(`Could not delete book: ${error}`);
-  });
-});
+  ngOnInit(): void {
+    this.loadBooks();
+  }
 
-module.exports = bookRoute;
+  loadBooks() {
+    this.crudService.GetBooks().subscribe(res => {
+      console.log(res);
+      this.Books = res;
+    });
+  }
+
+  onEdit(book: any) {
+    this.editingBook = { ...book };
+  }
+
+  onUpdate() {
+    this.crudService.UpdateBook(this.editingBook._id, this.editingBook)
+      .subscribe(res => {
+        console.log(res);
+        this.editingBook = null;
+        this.loadBooks();
+      });
+  }
+
+  onCancel() {
+    this.editingBook = null;
+  }
+
+  onDelete(id: any): any {
+    this.crudService.DeleteBook(id)
+      .subscribe(res => {
+        console.log(res);
+        this.loadBooks();
+      });
+  }
+}
