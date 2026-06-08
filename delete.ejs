@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Census</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<h1>Edit Census Record</h1>
+
+<form action="/census/<%= record._id %>?_method=PUT" method="POST">
+    <label>Street</label>
+    <input type="text" name="street" value="<%= record.street %>">
+
+    <label>City</label>
+    <input type="text" name="city" value="<%= record.city %>">
+
+    <label>State</label>
+    <input type="text" name="state" value="<%= record.state %>">
+
+    <label>Zip</label>
+    <input type="text" name="zip" value="<%= record.zip %>">
+
+    <label>Number of People</label>
+    <input type="number" name="people" value="<%= record.people %>">
+
+    <label>Year</label>
+    <input type="number" name="year" value="<%= record.year %>">
+
+    <label>Census Taker</label>
+    <input type="text" name="takerName" value="<%= record.takerName %>">
+
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>
