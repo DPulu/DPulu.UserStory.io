@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Census Records</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<h1>Census Records</h1>
+
+<a href="/census-create">Add New Census Record</a>
+
+<hr>
+
+<% records.forEach(record => { %>
+
+<div class="record">
+
+    <p><strong>Year:</strong> <%= record.year %></p>
+
+    <p><strong>Census Taker:</strong> <%= record.takerName %></p>
+
+    <p><strong>People:</strong> <%= record.people %></p>
+
+    <p><strong>State:</strong> <%= record.state %></p>
+
+    <p><strong>City:</strong> <%= record.city %></p>
+
+    <a href="/census/<%= record._id %>/edit">Edit</a>
+
+    <form action="/census/<%= record._id %>?_method=DELETE"
+          method="POST"
+          style="display:inline;">
+        <button type="submit">Delete</button>
+    </form>
+
+</div>
+
+<hr>
+
+<% }) %>
+
+</body>
+</html>
